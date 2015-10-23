@@ -43,4 +43,9 @@ void Java_osvr_clientkit_Interface_registerCallback(JNIEnv* env, jobject obj, jo
     
 }
 
+void Java_osvr_clientkit_Interface_disposeNative(JNIEnv* env, jobject obj){
+    jobject *iface = getHandle<jobject>(env, obj);
+    setHandle<jlong>(env, obj, 0);
+    delete iface;
+}
 #endif

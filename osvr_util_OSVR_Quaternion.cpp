@@ -11,3 +11,9 @@ void Java_osvr_util_OSVR_1Quaternion_initializeNative(JNIEnv * env, jobject obj)
     OSVR_Quaternion quat;
     setHandle(env, obj, &quat);
 }
+
+void Java_osvr_util_OSVR_1Quaternion_disposeNative(JNIEnv* env, jobject obj){
+    jobject *quat = getHandle<jobject>(env, obj);
+    setHandle<jlong>(env, obj, 0);
+    delete quat;
+}

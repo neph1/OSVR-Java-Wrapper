@@ -12,3 +12,9 @@ void Java_osvr_util_OSVR_1Vec3_initializeNative(JNIEnv * env, jobject obj){
     OSVR_Vec3 quat;
     setHandle(env, obj, &quat);
 }
+
+void Java_osvr_util_OSVR_1Vec3_disposeNative(JNIEnv* env, jobject obj){
+    jobject *vec = getHandle<jobject>(env, obj);
+    setHandle<jlong>(env, obj, 0);
+    delete vec;
+}

@@ -36,3 +36,9 @@ jint Java_osvr_clientkit_InterfaceState_osvrGetPositionState(JNIEnv* env, jobjec
     setVec3Data(env, position, *state);
     return (jint)i;
 }
+
+void Java_osvr_clientkit_InterfaceState_disposeNative(JNIEnv* env, jobject obj){
+    jobject *state = getHandle<jobject>(env, obj);
+    setHandle<jlong>(env, obj, 0);
+    delete state;
+}

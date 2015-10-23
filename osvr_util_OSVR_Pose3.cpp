@@ -12,3 +12,8 @@ void Java_osvr_util_OSVR_1Pose3_initializeNative(JNIEnv* env, jobject obj){
     setHandle(env, obj, &quat);
 }
 
+void Java_osvr_util_OSVR_1Pose3_disposeNative(JNIEnv* env, jobject obj){
+    jobject *pose = getHandle<jobject>(env, obj);
+    setHandle<jlong>(env, obj, 0);
+    delete pose;
+}

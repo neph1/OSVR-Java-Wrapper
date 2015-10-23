@@ -31,6 +31,14 @@ JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetPoseState
 JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetPositionState
   (JNIEnv *, jobject, jobject, jobject, jobject);
 
+/*
+ * Class:     osvr_clientkit_InterfaceState
+ * Method:    disposeNative
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_InterfaceState_disposeNative
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif
