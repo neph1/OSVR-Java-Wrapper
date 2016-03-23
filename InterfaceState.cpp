@@ -18,11 +18,12 @@ void Java_osvr_clientkit_InterfaceState_initializeNative(JNIEnv* env, jobject ob
 }
 
 jint Java_osvr_clientkit_InterfaceState_osvrGetPoseState(JNIEnv* env, jobject obj, jobject interface, jobject timestate, jobject pose){
-    std::cout << "InterfaceState_osvrGetPoseState"<< std::endl;
     OSVR_ClientInterface *interfaceNative = getHandle<OSVR_ClientInterface>(env, interface);
     OSVR_PoseState *state = getHandle<OSVR_PoseState>(env, pose);
-    OSVR_TimeValue timestamp ;//= getHandle<OSVR_TimeValue>(env, pose);
-    int i = osvrGetPoseState(*interfaceNative, &timestamp, state);
+    OSVR_TimeValue *timestamp = getHandle<OSVR_TimeValue>(env, timestate);
+    int i = osvrGetPoseState(*interfaceNative, timestamp, state);
+    std::cout << i << std::endl;
+    
     setPose3Data(env, pose, *state);
     return (jint)i;
 }

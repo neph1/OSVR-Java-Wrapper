@@ -3,7 +3,6 @@
 #include "osvr_util_callback_OSVR_PoseCallback_decl.h"
 #include "Handle.h"
 
-#include <osvr/ClientKit/InterfaceC.h>
 #include <osvr/ClientKit/InterfaceStateC.h>
 #include <osvr/ClientKit/InterfaceCallbackC.h>
 #include <string>
@@ -27,16 +26,23 @@ Interface::Interface(OSVR_ClientInterface iface){
     m_interface = iface;
 }
 
+jlong Java_osvr_clientkit_Interface_initializeNative(JNIEnv* env, jobject obj){
+    Interface interface;
+    std::cout << "Interface_initializeNative"<< std::endl;
+    setHandle(env, obj, &interface);
+    return (jlong)0;
+}
+
 void Java_osvr_clientkit_Interface_registerCallback(JNIEnv* env, jobject obj, jobject callback, jint type, jstring path){
 //    m_interface = getHandle<OSVR_ClientInterface>(env, obj);
 //    std::cout << "registerCallback"<< std::endl;
     switch (type) {
         case 0: // Pose
 //            PoseCallback javaCallback;
-//            
-//            OSVR_PoseCallback *nativeCallback = getHandle<OSVR_PoseCallback>(env, callback);
-//            osvrRegisterPoseCallback(m_interface, &javaCallback.getCallback, NULL);
-//            osvrRegisterPoseCallback(m_interface, javaCallback.getCallback(), NULL);
+            OSVR_PoseReport report;
+            OSVR_PoseCallback *nativeCallback = getHandle<OSVR_PoseCallback>(env, callback);
+            osvrRegisterPoseCallback(m_interface, *nativeCallback, NULL);
+//            osvrRegisterPoseCallback(m_interface, callback.getCallback(), NULL);
             std::cout << "register Pose Callback"<< std::endl;
             break;
     }

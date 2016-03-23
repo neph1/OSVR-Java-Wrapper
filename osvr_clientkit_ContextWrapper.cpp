@@ -66,7 +66,6 @@ jlong Java_osvr_clientkit_ContextWrapper_initializeNative(JNIEnv* env, jobject o
 void Java_osvr_clientkit_ContextWrapper_updateNative(JNIEnv* env, jobject obj) {
     //OSVR_ClientContext *m_context = getHandle<OSVR_ClientContext>(env, obj);
     OSVR_ReturnCode ret = osvrClientUpdate(m_context);
-//    std::cout << "updateNative"<< std::endl;
     if (OSVR_RETURN_SUCCESS != ret) {
         throw std::runtime_error("Error updating context.");
     }
@@ -86,24 +85,25 @@ void Java_osvr_clientkit_ContextWrapper_dispose(JNIEnv* env, jobject obj){
 
 jlong Java_osvr_clientkit_ContextWrapper_getInterface(JNIEnv* env, jobject obj, jstring path, jobject interfaceHolder){
 //    OSVR_ClientContext *m_context = getHandle<OSVR_ClientContext>(env, obj);
-    OSVR_ClientInterface interface = NULL;
+    OSVR_ClientInterface *interface = getHandle<OSVR_ClientInterface>(env, interfaceHolder);
     const char *pathString = env->GetStringUTFChars(path, NULL);
     OSVR_ReturnCode ret =
-        osvrClientGetInterface(m_context, pathString, &interface);
+        osvrClientGetInterface(m_context, pathString, interface);
     if (OSVR_RETURN_SUCCESS != ret) {
         throw std::runtime_error(
             "Couldn't create interface because the path was invalid.");
     }
     env->ReleaseStringUTFChars(path, pathString);
     std::cout << "getInterface"<< std::endl;
-    Interface interfaceWrapper(interface);
-    setHandle(env, interfaceHolder, &interface);
-    return (jlong) &interfaceWrapper;
+//    Interface interfaceWrapper(interface);
+    setHandle(env, interfaceHolder, *interface);
+    return (jlong) 0;
 }
 
 jstring Java_osvr_clientkit_ContextWrapper_getStringParameter(JNIEnv* env, jobject obj, jstring paramName){
     const char *paramString = env->GetStringUTFChars(paramName, NULL);
     OSVR_ClientContext *m_context = getHandle<OSVR_ClientContext>(env, obj);
+    
     size_t length = 0;
         OSVR_ReturnCode ret = osvrClientGetStringParameterLength(
             *m_context, paramString, &length);
