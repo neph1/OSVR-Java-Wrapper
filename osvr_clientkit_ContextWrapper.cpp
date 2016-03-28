@@ -85,6 +85,7 @@ void Java_osvr_clientkit_ContextWrapper_dispose(JNIEnv* env, jobject obj){
 
 jlong Java_osvr_clientkit_ContextWrapper_getInterface(JNIEnv* env, jobject obj, jstring path, jobject interfaceHolder){
 //    OSVR_ClientContext *m_context = getHandle<OSVR_ClientContext>(env, obj);
+    
     OSVR_ClientInterface *interface = getHandle<OSVR_ClientInterface>(env, interfaceHolder);
     const char *pathString = env->GetStringUTFChars(path, NULL);
     OSVR_ReturnCode ret =
@@ -94,10 +95,8 @@ jlong Java_osvr_clientkit_ContextWrapper_getInterface(JNIEnv* env, jobject obj, 
             "Couldn't create interface because the path was invalid.");
     }
     env->ReleaseStringUTFChars(path, pathString);
-    std::cout << "getInterface"<< std::endl;
-//    Interface interfaceWrapper(interface);
     setHandle(env, interfaceHolder, *interface);
-    return (jlong) 0;
+    return (jlong) *interface;
 }
 
 jstring Java_osvr_clientkit_ContextWrapper_getStringParameter(JNIEnv* env, jobject obj, jstring paramName){

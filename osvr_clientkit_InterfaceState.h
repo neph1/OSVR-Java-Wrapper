@@ -18,18 +18,18 @@ JNIEXPORT void JNICALL Java_osvr_clientkit_InterfaceState_initializeNative
 /*
  * Class:     osvr_clientkit_InterfaceState
  * Method:    osvrGetPoseState
- * Signature: (Losvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Pose3;)I
+ * Signature: (JLosvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Pose3;)I
  */
 JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetPoseState
-  (JNIEnv *, jobject, jobject, jobject, jobject);
+  (JNIEnv *, jobject, jlong, jobject, jobject, jobject);
 
 /*
  * Class:     osvr_clientkit_InterfaceState
  * Method:    osvrGetPositionState
- * Signature: (Losvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Vec3;)I
+ * Signature: (JLosvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Vec3;)I
  */
 JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetPositionState
-  (JNIEnv *, jobject, jobject, jobject, jobject);
+  (JNIEnv *, jobject, jlong, jobject, jobject, jobject);
 
 /*
  * Class:     osvr_clientkit_InterfaceState
