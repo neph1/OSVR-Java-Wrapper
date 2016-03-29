@@ -26,11 +26,10 @@ Interface::Interface(OSVR_ClientInterface iface){
     m_interface = iface;
 }
 
-jlong Java_osvr_clientkit_Interface_initializeNative(JNIEnv* env, jobject obj){
+void Java_osvr_clientkit_Interface_initializeNative(JNIEnv* env, jobject obj){
     Interface interface;
     std::cout << "Interface_initializeNative"<< std::endl;
     setHandle(env, obj, &interface);
-    return (jlong)0;
 }
 
 void Java_osvr_clientkit_Interface_registerCallback(JNIEnv* env, jobject obj, jobject callback, jint type, jstring path){

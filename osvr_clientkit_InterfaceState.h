@@ -9,14 +9,6 @@ extern "C" {
 #endif
 /*
  * Class:     osvr_clientkit_InterfaceState
- * Method:    initializeNative
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_osvr_clientkit_InterfaceState_initializeNative
-  (JNIEnv *, jobject);
-
-/*
- * Class:     osvr_clientkit_InterfaceState
  * Method:    osvrGetPoseState
  * Signature: (JLosvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Pose3;)I
  */
@@ -30,6 +22,30 @@ JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetPoseState
  */
 JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetPositionState
   (JNIEnv *, jobject, jlong, jobject, jobject, jobject);
+
+/*
+ * Class:     osvr_clientkit_InterfaceState
+ * Method:    osvrGetOrientationState
+ * Signature: (JLosvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Quaternion;)I
+ */
+JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetOrientationState
+  (JNIEnv *, jobject, jlong, jobject, jobject, jobject);
+
+/*
+ * Class:     osvr_clientkit_InterfaceState
+ * Method:    osvrGetButtonState
+ * Signature: (JLosvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Button;)I
+ */
+JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetButtonState
+  (JNIEnv *, jobject, jlong, jobject, jobject, jobject);
+
+/*
+ * Class:     osvr_clientkit_InterfaceState
+ * Method:    initializeNative
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_InterfaceState_initializeNative
+  (JNIEnv *, jobject);
 
 /*
  * Class:     osvr_clientkit_InterfaceState

@@ -4,6 +4,7 @@
  *
  * Created on den 23 oktober 2015, 11:20
  */
+#include "osvr_util_OSVR_DataObject.h"
 #include "osvr_clientkit_OSVR_Surface.h"
 #include "osvr_clientkit_OSVR_DisplayConfig.h"
 #include <osvr/clientkit/Display.h>

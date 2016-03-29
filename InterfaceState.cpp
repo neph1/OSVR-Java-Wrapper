@@ -50,14 +50,44 @@ jint Java_osvr_clientkit_InterfaceState_osvrGetPoseState(JNIEnv* env, jobject ob
 //}
 
 jint Java_osvr_clientkit_InterfaceState_osvrGetPositionState(JNIEnv* env, jobject obj, jlong interfaceHandle, jobject interface, jobject timestate, jobject position){
-    std::cout << "InterfaceState_osvrGetPositionState"<< std::endl;
     OSVR_ClientInterface interfaceNative = reinterpret_cast<OSVR_ClientInterface >(interfaceHandle);
     OSVR_PositionState *state = getHandle<OSVR_PositionState>(env, position);
     OSVR_TimeValue timestamp ;//= getHandle<OSVR_TimeValue>(env, pose);
-    int i = osvrGetPositionState(interfaceNative, &timestamp, state);
+    OSVR_ReturnCode res = osvrGetPositionState(interfaceNative, &timestamp, state);
+    if (OSVR_RETURN_SUCCESS != res) {
+        std::cout << "No orientation state!"<< std::endl;
+        return (jint)0;
+    }
     setVec3Data(env, position, *state);
-    return (jint)i;
+    return (jint)1;
 }
+
+jint Java_osvr_clientkit_InterfaceState_osvrGetOrientationState(JNIEnv* env, jobject obj, jlong interfaceHandle, jobject interface, jobject timestate, jobject orientation){
+    OSVR_ClientInterface interfaceNative = reinterpret_cast<OSVR_ClientInterface >(interfaceHandle);
+    OSVR_OrientationState *state = getHandle<OSVR_OrientationState>(env, orientation);
+    OSVR_TimeValue timestamp ;//= getHandle<OSVR_TimeValue>(env, pose);
+    OSVR_ReturnCode res = osvrGetOrientationState(interfaceNative, &timestamp, state);
+    if (OSVR_RETURN_SUCCESS != res) {
+        std::cout << "No orientation state!"<< std::endl;
+        return (jint)0;
+    }
+    setQuatData(env, orientation, *state);
+    return (jint)1;
+}
+
+jint Java_osvr_clientkit_InterfaceState_osvrGetButtonState(JNIEnv* env, jobject obj, jlong interfaceHandle, jobject interface, jobject timestate, jobject button){
+    OSVR_ClientInterface interfaceNative = reinterpret_cast<OSVR_ClientInterface >(interfaceHandle);
+    OSVR_ButtonState *state = getHandle<OSVR_ButtonState>(env, button);
+    OSVR_TimeValue timestamp ;//= getHandle<OSVR_TimeValue>(env, pose);
+    OSVR_ReturnCode res = osvrGetButtonState(interfaceNative, &timestamp, state);
+    if (OSVR_RETURN_SUCCESS != res) {
+        std::cout << "No orientation state!"<< std::endl;
+        return (jint)0;
+    }
+    setButtonData(env, button, *state);
+    return (jint)1;
+}
+
 //jint Java_osvr_clientkit_InterfaceState_osvrGetPositionState(JNIEnv* env, jobject obj, jobject interface, jobject timestate, jobject position){
 //    std::cout << "InterfaceState_osvrGetPositionState"<< std::endl;
 //    OSVR_ClientInterface *interfaceNative = getHandle<OSVR_ClientInterface>(env, interface);
