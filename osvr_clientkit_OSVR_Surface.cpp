@@ -5,7 +5,7 @@
 #include <iostream>
 
 void Java_osvr_clientkit_OSVR_1Surface_initializeNative(JNIEnv * env, jobject obj){
-//    OSVR_Surface surface;
+//    osvr::clientkit::Surface surface;
 //    std::cout << "OSVR_Surface_initializeNative"<< std::endl;
 //    setHandle(env, obj, &surface);
 }

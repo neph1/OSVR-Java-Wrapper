@@ -4,8 +4,10 @@
 #include <string>
 #include <iostream>
 
-void Java_osvr_clientkit_OSVR_1Viewer_initializeNative(JNIEnv*, jobject){
+void Java_osvr_clientkit_OSVR_1Viewer_initializeNative(JNIEnv * env, jobject obj){
     
+//    osvr::clientkit::Viewer viewer;
+//    setHandle(env, obj, &viewer);
 }
 
 jint Java_osvr_clientkit_OSVR_1Viewer_getNumEyes(JNIEnv* env, jobject obj){
