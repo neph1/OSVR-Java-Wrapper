@@ -9,6 +9,22 @@ extern "C" {
 #endif
 /*
  * Class:     osvr_clientkit_OSVR_Eye
+ * Method:    initializeNative
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_OSVR_1Eye_initializeNative
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     osvr_clientkit_OSVR_Eye
+ * Method:    disposeNative
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_OSVR_1Eye_disposeNative
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     osvr_clientkit_OSVR_Eye
  * Method:    getNumSurfaces
  * Signature: ()I
  */
@@ -34,26 +50,10 @@ JNIEXPORT jboolean JNICALL Java_osvr_clientkit_OSVR_1Eye_getPose
 /*
  * Class:     osvr_clientkit_OSVR_Eye
  * Method:    getViewMatrix
- * Signature: (I[[F)Z
+ * Signature: (I[F)Z
  */
 JNIEXPORT jboolean JNICALL Java_osvr_clientkit_OSVR_1Eye_getViewMatrix
-  (JNIEnv *, jobject, jint, jobjectArray);
-
-/*
- * Class:     osvr_clientkit_OSVR_Eye
- * Method:    initializeNative
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_osvr_clientkit_OSVR_1Eye_initializeNative
-  (JNIEnv *, jobject);
-
-/*
- * Class:     osvr_clientkit_OSVR_Eye
- * Method:    disposeNative
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_osvr_clientkit_OSVR_1Eye_disposeNative
-  (JNIEnv *, jobject);
+  (JNIEnv *, jobject, jint, jfloatArray);
 
 #ifdef __cplusplus
 }

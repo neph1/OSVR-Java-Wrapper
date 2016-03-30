@@ -38,25 +38,19 @@ jint Java_osvr_clientkit_OSVR_1DisplayConfig_getNumViewers(JNIEnv * env, jobject
 }
 
 jobject Java_osvr_clientkit_OSVR_1DisplayConfig_getViewer(JNIEnv * env, jobject obj, jint viewerIndex, jobject holder){
-    osvr::clientkit::Viewer viewer = m_displayConfig.getViewer(viewerIndex);
+    osvr::clientkit::Viewer viewer = m_displayConfig.getViewer((int)viewerIndex);
     setHandle(env, holder, &viewer);
     return (jobject) &holder;
 }
 
 jobject Java_osvr_clientkit_OSVR_1DisplayConfig_getEye(JNIEnv* env, jobject obj, jint viewerIndex, jint eyeIndex, jobject holder){
-    osvr::clientkit::Eye eye = m_displayConfig.getEye(viewerIndex, eyeIndex);
+    osvr::clientkit::Eye eye = m_displayConfig.getEye((int)viewerIndex, (int)eyeIndex);
     setHandle(env, holder, &eye);
     return (jobject) &holder;
 }
 
 jobject Java_osvr_clientkit_OSVR_1DisplayConfig_getSurface(JNIEnv* env, jobject obj, jint viewerIndex, jint eyeIndex, jint surfaceIndex, jobject holder){
-//    osvr::clientkit::DisplayConfig *display = getHandle<osvr::clientkit::DisplayConfig>(env, obj);
-    osvr::clientkit::Surface surface = m_displayConfig.getSurface(viewerIndex, eyeIndex, surfaceIndex);
-    if(NULL == holder){
-        jclass cls = env->FindClass("Losvr/clientkit/OSVR_Surface;");
-        jmethodID constructor = env->GetMethodID(cls, "<init>", "()V");
-        holder = env->NewObject(cls, constructor);
-    }
+    osvr::clientkit::Surface surface = m_displayConfig.getSurface((int)viewerIndex, (int)eyeIndex, (int)surfaceIndex);
     setHandle(env, holder, &surface);
     return (jobject) &holder;
 }
@@ -64,5 +58,9 @@ jobject Java_osvr_clientkit_OSVR_1DisplayConfig_getSurface(JNIEnv* env, jobject 
 jboolean Java_osvr_clientkit_OSVR_1DisplayConfig_valid(JNIEnv* env, jobject obj){
     osvr::clientkit::DisplayConfig *display = getHandle<osvr::clientkit::DisplayConfig>(env, obj);
     return (jboolean) display->valid();
+}
+
+jboolean Java_osvr_clientkit_OSVR_1DisplayConfig_checkStartup(JNIEnv* env, jobject obj){
+    return (jboolean) m_displayConfig.checkStartup();
 }
 
