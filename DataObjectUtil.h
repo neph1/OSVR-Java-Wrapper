@@ -4,6 +4,7 @@
  *
  * Created on den 22 oktober 2015, 19:52
  */
+#include <osvr/Util/ClientReportTypesC.h>
 
 #ifndef DATAOBJECTUTIL_H
 #define	DATAOBJECTUTIL_H

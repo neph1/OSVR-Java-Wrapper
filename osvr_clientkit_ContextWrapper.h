@@ -55,6 +55,7 @@ JNIEXPORT jlong JNICALL Java_osvr_clientkit_ContextWrapper_getInterface
 JNIEXPORT void JNICALL Java_osvr_clientkit_ContextWrapper_dispose
   (JNIEnv *, jobject);
 
+
 #ifdef __cplusplus
 }
 #endif

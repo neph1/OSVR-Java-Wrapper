@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 
+
 void Java_osvr_clientkit_OSVR_1Viewer_initializeNative(JNIEnv * env, jobject obj){
     
 //    osvr::clientkit::Viewer viewer;
@@ -38,4 +39,13 @@ void Java_osvr_clientkit_OSVR_1Viewer_disposeNative(JNIEnv * env, jobject obj){
     osvr::clientkit::Viewer *viewer = getHandle<osvr::clientkit::Viewer>(env, obj);
     setHandle<jlong>(env, obj, 0);
     delete viewer;
+}
+
+jlong Java_osvr_clientkit_OSVR_1Viewer_getViewerID(JNIEnv * env, jobject obj){
+    osvr::clientkit::Viewer *viewer = getHandle<osvr::clientkit::Viewer>(env, obj);
+    std::cout << "getViewerID"<< std::endl;
+    std::cout << viewer<< std::endl;
+    std::cout << viewer->getViewerID()<< std::endl;
+    
+    return (jlong) viewer->getViewerID();
 }

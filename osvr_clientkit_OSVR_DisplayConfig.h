@@ -50,10 +50,10 @@ JNIEXPORT jobject JNICALL Java_osvr_clientkit_OSVR_1DisplayConfig_getViewer
 /*
  * Class:     osvr_clientkit_OSVR_DisplayConfig
  * Method:    getEye
- * Signature: (IILosvr/clientkit/OSVR_Eye;)Losvr/clientkit/OSVR_Eye;
+ * Signature: (JILosvr/clientkit/OSVR_Eye;)Losvr/clientkit/OSVR_Eye;
  */
 JNIEXPORT jobject JNICALL Java_osvr_clientkit_OSVR_1DisplayConfig_getEye
-  (JNIEnv *, jobject, jint, jint, jobject);
+  (JNIEnv *, jobject, jlong, jint, jobject);
 
 /*
  * Class:     osvr_clientkit_OSVR_DisplayConfig

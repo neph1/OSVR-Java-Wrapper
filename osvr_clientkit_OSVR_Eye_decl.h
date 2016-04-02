@@ -13,8 +13,12 @@
 #define	OSVR_CLIENTKIT_OSVR_EYE_DECL_H
 
 class osvr_clientkit_OSVR_Eye{
+//    osvr::clientkit::Eye m_eye = NULL;
 public:
     OSVR_Eye();
+//    OSVR_Eye(osvr::clientkit::Eye eye){
+//        m_eye = eye;
+//    }
 };
 
 #endif	/* OSVR_CLIENTKIT_OSVR_EYE_DECL_H */

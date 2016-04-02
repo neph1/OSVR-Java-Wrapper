@@ -55,6 +55,14 @@ JNIEXPORT void JNICALL Java_osvr_clientkit_OSVR_1Surface_initializeNative
 JNIEXPORT void JNICALL Java_osvr_clientkit_OSVR_1Surface_disposeNative
   (JNIEnv *, jobject);
 
+/*
+ * Class:     osvr_clientkit_OSVR_Surface
+ * Method:    getSurfaceID
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_osvr_clientkit_OSVR_1Surface_getSurfaceID
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

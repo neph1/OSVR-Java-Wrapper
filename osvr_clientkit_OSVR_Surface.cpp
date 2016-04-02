@@ -25,3 +25,8 @@ void Java_osvr_clientkit_OSVR_1Surface_disposeNative(JNIEnv * env, jobject obj){
     setHandle<jlong>(env, obj, 0);
     delete surface;
 }
+
+jint Java_osvr_clientkit_OSVR_1Surface_getSurfaceID(JNIEnv * env, jobject obj){
+    osvr::clientkit::Surface *surface = getHandle<osvr::clientkit::Surface>(env, obj);
+    return (jint) surface->getEyeID();
+}

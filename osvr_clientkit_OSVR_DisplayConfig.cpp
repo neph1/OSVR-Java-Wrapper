@@ -9,9 +9,10 @@ osvr::clientkit::DisplayConfig m_displayConfig;
 
 void Java_osvr_clientkit_OSVR_1DisplayConfig_initializeNative(JNIEnv * env, jobject obj, jobject jcontext){
     OSVR_ClientContext *context = getHandle<OSVR_ClientContext>(env, jcontext);
-    osvr::clientkit::ClientContext clientContext(*context);
-    m_displayConfig  = osvr::clientkit::DisplayConfig(clientContext);
-//    m_displayConfig = OSVR_DisplayConfig(config);
+    OSVR_DisplayConfig cfg;
+    OSVR_ReturnCode result = osvrClientGetDisplay(*context, &cfg);
+    osvr::clientkit::UnderlyingDisplayConfigPtr ret(cfg, &::osvrClientFreeDisplay);
+    m_displayConfig  = osvr::clientkit::DisplayConfig(ret);
     std::cout << "DisplayConfig_initializeNative"<< std::endl;
     setHandle(env, obj, &m_displayConfig);
 }
@@ -29,35 +30,35 @@ void Java_osvr_clientkit_OSVR_1DisplayConfig_disposeNative(JNIEnv * env, jobject
 
 jint Java_osvr_clientkit_OSVR_1DisplayConfig_getNumViewers(JNIEnv * env, jobject obj){
 //    osvr::clientkit::DisplayConfig *display = getHandle<osvr::clientkit::DisplayConfig>(env, obj);
-    OSVR_ViewerCount viewers;
 //    osvrClientGetNumViewers(m_displayConfig, viewers);
     OSVR_ViewerCount numViewers =  m_displayConfig.getNumViewers();
     std::cout << "DisplayConfig_getNumViewers"<< std::endl;
-    std::cout << viewers << std::endl;
-    return (jint) viewers;
+    std::cout << numViewers << std::endl;
+    return (jint) numViewers;
 }
 
 jobject Java_osvr_clientkit_OSVR_1DisplayConfig_getViewer(JNIEnv * env, jobject obj, jint viewerIndex, jobject holder){
     osvr::clientkit::Viewer viewer = m_displayConfig.getViewer((int)viewerIndex);
+    std::cout << "DisplayConfig_getViewer"<< std::endl;
+    std::cout << viewer.getViewerID() << std::endl;
     setHandle(env, holder, &viewer);
-    return (jobject) &holder;
+    return (jobject) NULL;
 }
 
-jobject Java_osvr_clientkit_OSVR_1DisplayConfig_getEye(JNIEnv* env, jobject obj, jint viewerIndex, jint eyeIndex, jobject holder){
+jobject Java_osvr_clientkit_OSVR_1DisplayConfig_getEye(JNIEnv* env, jobject obj, jlong viewerIndex, jint eyeIndex, jobject holder){
     osvr::clientkit::Eye eye = m_displayConfig.getEye((int)viewerIndex, (int)eyeIndex);
     setHandle(env, holder, &eye);
-    return (jobject) &holder;
+    return (jobject) NULL;
 }
 
 jobject Java_osvr_clientkit_OSVR_1DisplayConfig_getSurface(JNIEnv* env, jobject obj, jint viewerIndex, jint eyeIndex, jint surfaceIndex, jobject holder){
     osvr::clientkit::Surface surface = m_displayConfig.getSurface((int)viewerIndex, (int)eyeIndex, (int)surfaceIndex);
     setHandle(env, holder, &surface);
-    return (jobject) &holder;
+    return (jobject) NULL;
 }
 
 jboolean Java_osvr_clientkit_OSVR_1DisplayConfig_valid(JNIEnv* env, jobject obj){
-    osvr::clientkit::DisplayConfig *display = getHandle<osvr::clientkit::DisplayConfig>(env, obj);
-    return (jboolean) display->valid();
+    return (jboolean) m_displayConfig.valid();
 }
 
 jboolean Java_osvr_clientkit_OSVR_1DisplayConfig_checkStartup(JNIEnv* env, jobject obj){
