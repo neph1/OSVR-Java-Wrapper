@@ -5,6 +5,7 @@
  * Created on den 22 oktober 2015, 19:52
  */
 #include <osvr/Util/ClientReportTypesC.h>
+#include <osvr/Util/RenderingTypesC.h>
 
 #ifndef DATAOBJECTUTIL_H
 #define	DATAOBJECTUTIL_H
@@ -14,6 +15,7 @@
 #define VEC3_LEN 3
 #define QUAT_LEN 4
 #define VIEWMAT_LEN 16
+#define VIEWPORT_LENGTH 4
 
 inline jfieldID getDoubleArrayField(JNIEnv *env, jobject obj)
 {
@@ -57,8 +59,21 @@ inline void setButtonData(JNIEnv *env, jobject obj, OSVR_ButtonState button){
 }
 
 inline void setViewMatrixData(JNIEnv *env, jobject obj, float matrix[], jfloatArray jmatrix){
-    
+    int i;
+    jfloat arr[VIEWMAT_LEN] = { };
+    for (i = 0; i < VIEWMAT_LEN; i++) {
+        arr[i] = matrix[i]; 
+    }
     env->SetFloatArrayRegion( jmatrix, ZERO, VIEWMAT_LEN, matrix);
 }
 #endif	/* DATAOBJECTUTIL_H */
 
+inline void setViewportData(JNIEnv *env, jobject obj, OSVR_ViewportDimension matrix[], jintArray jmatrix)
+{
+    int i;
+    jint arr[VIEWPORT_LENGTH] = { };
+    for (i = 0; i < VIEWPORT_LENGTH; i++) {
+        arr[i] = matrix[i]; 
+    }
+    env->SetIntArrayRegion( jmatrix, ZERO, VIEWPORT_LENGTH, arr);
+}
