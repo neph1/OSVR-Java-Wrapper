@@ -62,5 +62,19 @@ void Java_osvr_clientkit_DisplayC_osvrClientGetViewerEyeViewMatrixf(JNIEnv * env
     if(ret != OSVR_RETURN_SUCCESS){
         
     }
-    setViewMatrixData(env, obj, mat, viewMatrix);
+    setMatrixData(env, obj, mat, viewMatrix);
+}
+
+void Java_osvr_clientkit_DisplayC_osvrClientGetViewerEyeSurfaceProjectionMatrixf(JNIEnv * env, jobject obj, jobject displayHandle, jint viewer, jint eye, jint surface, jfloat near, jfloat far, jint flags, jfloatArray projMatrix){
+    osvr::clientkit::DisplayConfig *display = getHandle<osvr::clientkit::DisplayConfig>(env, displayHandle);
+    float mat[VIEWMAT_LEN] = { };
+    OSVR_ViewerCount viewerC = static_cast<OSVR_ViewerCount>(viewer);
+    OSVR_EyeCount eyeC = static_cast<OSVR_EyeCount>(eye);
+    OSVR_SurfaceCount surfaceC = static_cast<OSVR_SurfaceCount>(surface);
+    OSVR_ReturnCode ret = osvrClientGetViewerEyeSurfaceProjectionMatrixf(display->getDisplayConfig(), viewerC, eyeC, surfaceC, near, far, OSVR_MATRIX_COLMAJOR | OSVR_MATRIX_COLVECTORS |
+                        OSVR_MATRIX_SIGNEDZ | OSVR_MATRIX_RHINPUT, mat);
+    if(ret != OSVR_RETURN_SUCCESS){
+        
+    }
+    setMatrixData(env, obj, mat, projMatrix);
 }

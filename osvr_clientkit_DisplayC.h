@@ -9,6 +9,22 @@ extern "C" {
 #endif
 /*
  * Class:     osvr_clientkit_DisplayC
+ * Method:    setDisplayConfig
+ * Signature: (Losvr/clientkit/OSVR_DisplayConfig;)V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_DisplayC_setDisplayConfig
+  (JNIEnv *, jobject, jobject);
+
+/*
+ * Class:     osvr_clientkit_DisplayC
+ * Method:    dispose
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_DisplayC_dispose
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     osvr_clientkit_DisplayC
  * Method:    osvrClientGetNumDisplayInputs
  * Signature: (Losvr/clientkit/OSVR_DisplayConfig;)I
  */
