@@ -78,3 +78,57 @@ void Java_osvr_clientkit_DisplayC_osvrClientGetViewerEyeSurfaceProjectionMatrixf
     }
     setMatrixData(env, obj, mat, projMatrix);
 }
+
+jboolean Java_osvr_clientkit_DisplayC_osvrClientDoesViewerEyeSurfaceWantDistortion(JNIEnv * env, jobject obj, jobject displayHandle, jint viewer, jint eye, jint surface){
+    osvr::clientkit::DisplayConfig *display = getHandle<osvr::clientkit::DisplayConfig>(env, displayHandle);
+    OSVR_ViewerCount viewerC = static_cast<OSVR_ViewerCount>(viewer);
+    OSVR_EyeCount eyeC = static_cast<OSVR_EyeCount>(eye);
+    OSVR_SurfaceCount surfaceC = static_cast<OSVR_SurfaceCount>(surface);
+    OSVR_CBool distortionRequested;
+    OSVR_ReturnCode ret = osvrClientDoesViewerEyeSurfaceWantDistortion(display->getDisplayConfig(), viewerC, eyeC, surfaceC, &distortionRequested);
+    if (OSVR_RETURN_SUCCESS != ret) {
+        return false;
+    }
+    return (distortionRequested == OSVR_TRUE);
+}
+
+jint Java_osvr_clientkit_DisplayC_osvrClientGetViewerEyeSurfaceRadialDistortionPriority(JNIEnv * env, jobject obj, jobject displayHandle, jint viewer, jint eye, jint surface){
+    osvr::clientkit::DisplayConfig *display = getHandle<osvr::clientkit::DisplayConfig>(env, displayHandle);
+    OSVR_ViewerCount viewerC = static_cast<OSVR_ViewerCount>(viewer);
+    OSVR_EyeCount eyeC = static_cast<OSVR_EyeCount>(eye);
+    OSVR_SurfaceCount surfaceC = static_cast<OSVR_SurfaceCount>(surface);
+    OSVR_DistortionPriority priority;
+    OSVR_ReturnCode ret = osvrClientGetViewerEyeSurfaceRadialDistortionPriority(display->getDisplayConfig(), viewerC, eyeC, surfaceC, &priority);
+    if (OSVR_RETURN_SUCCESS != ret) {
+        return -1;
+    }
+    return (jint) priority;
+}
+
+void Java_osvr_clientkit_DisplayC_osvrClientGetViewerEyeSurfaceRadialDistortion(JNIEnv * env, jobject obj, jobject displayHandle, jint viewer, jint eye, jint surface, jobject jparams){
+    osvr::clientkit::DisplayConfig *display = getHandle<osvr::clientkit::DisplayConfig>(env, displayHandle);
+    OSVR_ViewerCount viewerC = static_cast<OSVR_ViewerCount>(viewer);
+    OSVR_EyeCount eyeC = static_cast<OSVR_EyeCount>(eye);
+    OSVR_SurfaceCount surfaceC = static_cast<OSVR_SurfaceCount>(surface);
+    OSVR_RadialDistortionParameters params;
+    OSVR_ReturnCode ret = osvrClientGetViewerEyeSurfaceRadialDistortion(display->getDisplayConfig(), viewerC, eyeC, surfaceC, &params);
+    if (OSVR_RETURN_SUCCESS != ret) {
+       
+    }
+    setDistortionParameters(env, jparams, params);
+}
+
+void Java_osvr_clientkit_DisplayC_releaseFloatArray(JNIEnv *env, jobject obj, jfloatArray jArray){
+    float* elem = env->GetFloatArrayElements(jArray, 0);
+    env->ReleaseFloatArrayElements(jArray, (jfloat*)elem, 0);
+}
+
+void Java_osvr_clientkit_DisplayC_releaseDoubleArray(JNIEnv *env, jobject obj, jdoubleArray jArray){
+    double* elem = env->GetDoubleArrayElements(jArray, 0);
+    env->ReleaseDoubleArrayElements(jArray, (jdouble*)elem, 0);
+}
+
+void Java_osvr_clientkit_DisplayC_releaseIntArray(JNIEnv *env, jobject obj, jintArray jArray){
+    jint* elem = env->GetIntArrayElements(jArray, 0);
+    env->ReleaseIntArrayElements(jArray, (jint*)elem, 0);
+}

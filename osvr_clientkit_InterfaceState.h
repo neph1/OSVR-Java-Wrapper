@@ -10,34 +10,58 @@ extern "C" {
 /*
  * Class:     osvr_clientkit_InterfaceState
  * Method:    osvrGetPoseState
- * Signature: (JLosvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Pose3;)I
+ * Signature: (JLosvr/util/OSVR_TimeValue;Losvr/util/OSVR_Pose3;)I
  */
 JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetPoseState
-  (JNIEnv *, jobject, jlong, jobject, jobject, jobject);
+  (JNIEnv *, jobject, jlong, jobject, jobject);
 
 /*
  * Class:     osvr_clientkit_InterfaceState
  * Method:    osvrGetPositionState
- * Signature: (JLosvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Vec3;)I
+ * Signature: (JLosvr/util/OSVR_TimeValue;Losvr/util/OSVR_Vec3;)I
  */
 JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetPositionState
-  (JNIEnv *, jobject, jlong, jobject, jobject, jobject);
+  (JNIEnv *, jobject, jlong, jobject, jobject);
 
 /*
  * Class:     osvr_clientkit_InterfaceState
  * Method:    osvrGetOrientationState
- * Signature: (JLosvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Quaternion;)I
+ * Signature: (JLosvr/util/OSVR_TimeValue;Losvr/util/OSVR_Quaternion;)I
  */
 JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetOrientationState
-  (JNIEnv *, jobject, jlong, jobject, jobject, jobject);
+  (JNIEnv *, jobject, jlong, jobject, jobject);
 
 /*
  * Class:     osvr_clientkit_InterfaceState
  * Method:    osvrGetButtonState
- * Signature: (JLosvr/clientkit/Interface;Losvr/util/OSVR_TimeValue;Losvr/util/OSVR_Button;)I
+ * Signature: (JLosvr/util/OSVR_TimeValue;Losvr/util/OSVR_Button;)I
  */
 JNIEXPORT jint JNICALL Java_osvr_clientkit_InterfaceState_osvrGetButtonState
-  (JNIEnv *, jobject, jlong, jobject, jobject, jobject);
+  (JNIEnv *, jobject, jlong, jobject, jobject);
+
+/*
+ * Class:     osvr_clientkit_InterfaceState
+ * Method:    releaseFloatArray
+ * Signature: ([F)V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_InterfaceState_releaseFloatArray
+  (JNIEnv *, jobject, jfloatArray);
+
+/*
+ * Class:     osvr_clientkit_InterfaceState
+ * Method:    releaseIntArray
+ * Signature: ([I)V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_InterfaceState_releaseIntArray
+  (JNIEnv *, jobject, jintArray);
+
+/*
+ * Class:     osvr_clientkit_InterfaceState
+ * Method:    releaseDoubleArray
+ * Signature: ([D)V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_InterfaceState_releaseDoubleArray
+  (JNIEnv *, jobject, jdoubleArray);
 
 /*
  * Class:     osvr_clientkit_InterfaceState

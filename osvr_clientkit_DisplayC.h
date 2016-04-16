@@ -9,10 +9,10 @@ extern "C" {
 #endif
 /*
  * Class:     osvr_clientkit_DisplayC
- * Method:    setDisplayConfig
+ * Method:    setDisplayConfigNative
  * Signature: (Losvr/clientkit/OSVR_DisplayConfig;)V
  */
-JNIEXPORT void JNICALL Java_osvr_clientkit_DisplayC_setDisplayConfig
+JNIEXPORT void JNICALL Java_osvr_clientkit_DisplayC_setDisplayConfigNative
   (JNIEnv *, jobject, jobject);
 
 /*
@@ -110,6 +110,38 @@ JNIEXPORT jboolean JNICALL Java_osvr_clientkit_DisplayC_osvrClientDoesViewerEyeS
  */
 JNIEXPORT jint JNICALL Java_osvr_clientkit_DisplayC_osvrClientGetViewerEyeSurfaceRadialDistortionPriority
   (JNIEnv *, jobject, jobject, jint, jint, jint);
+
+/*
+ * Class:     osvr_clientkit_DisplayC
+ * Method:    osvrClientGetViewerEyeSurfaceRadialDistortion
+ * Signature: (Losvr/clientkit/OSVR_DisplayConfig;IIILosvr/util/OSVR_RadialDistortionParameters;)V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_DisplayC_osvrClientGetViewerEyeSurfaceRadialDistortion
+  (JNIEnv *, jobject, jobject, jint, jint, jint, jobject);
+
+/*
+ * Class:     osvr_clientkit_DisplayC
+ * Method:    releaseFloatArray
+ * Signature: ([F)V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_DisplayC_releaseFloatArray
+  (JNIEnv *, jobject, jfloatArray);
+
+/*
+ * Class:     osvr_clientkit_DisplayC
+ * Method:    releaseIntArray
+ * Signature: ([I)V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_DisplayC_releaseIntArray
+  (JNIEnv *, jobject, jintArray);
+
+/*
+ * Class:     osvr_clientkit_DisplayC
+ * Method:    releaseDoubleArray
+ * Signature: ([D)V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_DisplayC_releaseDoubleArray
+  (JNIEnv *, jobject, jdoubleArray);
 
 #ifdef __cplusplus
 }
