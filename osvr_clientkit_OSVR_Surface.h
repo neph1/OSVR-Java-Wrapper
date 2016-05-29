@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     osvr_clientkit_OSVR_Surface
  * Method:    getRelativeViewport
- * Signature: ()Losvr/clientkit/RelativeViewport;
+ * Signature: (Losvr/clientkit/RelativeViewport;)Losvr/clientkit/RelativeViewport;
  */
 JNIEXPORT jobject JNICALL Java_osvr_clientkit_OSVR_1Surface_getRelativeViewport
-  (JNIEnv *, jobject);
+  (JNIEnv *, jobject, jobject);
 
 /*
  * Class:     osvr_clientkit_OSVR_Surface
@@ -53,14 +53,6 @@ JNIEXPORT void JNICALL Java_osvr_clientkit_OSVR_1Surface_initializeNative
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_osvr_clientkit_OSVR_1Surface_disposeNative
-  (JNIEnv *, jobject);
-
-/*
- * Class:     osvr_clientkit_OSVR_Surface
- * Method:    getSurfaceID
- * Signature: ()I
- */
-JNIEXPORT jint JNICALL Java_osvr_clientkit_OSVR_1Surface_getSurfaceID
   (JNIEnv *, jobject);
 
 #ifdef __cplusplus

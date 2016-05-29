@@ -33,14 +33,6 @@ JNIEXPORT jobject JNICALL Java_osvr_clientkit_OSVR_1Viewer_getSurface
 
 /*
  * Class:     osvr_clientkit_OSVR_Viewer
- * Method:    getViewerID
- * Signature: ()J
- */
-JNIEXPORT jlong JNICALL Java_osvr_clientkit_OSVR_1Viewer_getViewerID
-  (JNIEnv *, jobject);
-
-/*
- * Class:     osvr_clientkit_OSVR_Viewer
  * Method:    getPose
  * Signature: (Losvr/util/OSVR_Pose3;)Z
  */

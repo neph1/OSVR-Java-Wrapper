@@ -9,6 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     osvr_clientkit_DisplayC
+ * Method:    initializeNative
+ * Signature: (Losvr/clientkit/ContextWrapper;)V
+ */
+JNIEXPORT void JNICALL Java_osvr_clientkit_DisplayC_initializeNative
+  (JNIEnv *, jobject, jobject);
+
+/*
+ * Class:     osvr_clientkit_DisplayC
  * Method:    setDisplayConfigNative
  * Signature: (Losvr/clientkit/OSVR_DisplayConfig;)V
  */

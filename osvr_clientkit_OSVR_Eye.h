@@ -25,14 +25,6 @@ JNIEXPORT void JNICALL Java_osvr_clientkit_OSVR_1Eye_disposeNative
 
 /*
  * Class:     osvr_clientkit_OSVR_Eye
- * Method:    getEyeID
- * Signature: ()I
- */
-JNIEXPORT jint JNICALL Java_osvr_clientkit_OSVR_1Eye_getEyeID
-  (JNIEnv *, jobject);
-
-/*
- * Class:     osvr_clientkit_OSVR_Eye
  * Method:    getNumSurfaces
  * Signature: ()I
  */

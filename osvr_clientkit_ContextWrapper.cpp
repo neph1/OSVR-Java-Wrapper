@@ -73,7 +73,12 @@ void Java_osvr_clientkit_ContextWrapper_updateNative(JNIEnv* env, jobject obj) {
 
 jboolean Java_osvr_clientkit_ContextWrapper_checkStatus(JNIEnv* env, jobject obj) {
     //OSVR_ClientContext *m_context = getHandle<OSVR_ClientContext>(env, obj);
-    return osvrClientCheckStatus(m_context) == OSVR_RETURN_SUCCESS;
+    OSVR_ReturnCode ret = osvrClientCheckStatus(m_context);
+    if (OSVR_RETURN_SUCCESS != ret) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 void Java_osvr_clientkit_ContextWrapper_dispose(JNIEnv* env, jobject obj){
@@ -110,7 +115,6 @@ jstring Java_osvr_clientkit_ContextWrapper_getStringParameter(JNIEnv* env, jobje
             throw std::runtime_error(
                 "Invalid context or null reference to length variable.");
         }
-
         if (0 == length) {
             return env->NewStringUTF("");
         }

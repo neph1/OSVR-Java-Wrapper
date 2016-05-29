@@ -6,6 +6,7 @@
  */
 #include "osvr_util_OSVR_DataObject.h"
 #include "osvr_clientkit_OSVR_Viewer.h"
+#include "osvr_clientkit_OSVR_DisplayConfig.h"
 #include <osvr/clientkit/Display.h>
 #include "osvr_clientkit_OSVR_Eye.h"
 

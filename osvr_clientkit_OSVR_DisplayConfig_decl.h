@@ -13,13 +13,13 @@
 #ifndef OSVR_CLIENTKIT_OSVR_DISPLAYCONFIG_DECL_H
 #define	OSVR_CLIENTKIT_OSVR_DISPLAYCONFIG_DECL_H
 
-//class OSVR_DisplayConfig{
+class osvr_clientkit_OSVR_DisplayConfig{
 //public:
-//    DisplayConfig();
+//    OSVR_DisplayConfig();
 //private:
 //    
 //    
-//};
+};
 
 #endif	/* OSVR_CLIENTKIT_OSVR_DISPLAYCONFIG_DECL_H */
 
